@@ -1,42 +1,60 @@
-import requests
-url = "https://s3.amazonaws.com/tcmg476/http_access_log"
+#This first command opens the downloaded log file needed to parse
+file = open('http_access_log.txt','r') 
+#This counts all of the total requests in the log file
+count = 0 
+#This counts all of the requests made in the last six months
+Past_6_Months = 0
 
-r = requests.get(url, stream = True)
+#this converts the text in the log to a variable that you can use and reference
+April = "Apr"
+May = "May"
+June = "Jun"
+July = "Jul"
+August = "Aug"
+September = "Sep"
+October = "Oct"
+Year = "1995"
 
-with open("python.txt","wb") as textfile:
-   for chunk in r.iter_content(chunk_size=1024):
-
-       if chunk:
-           textfile.write(chunk)
-result={
-"total_requests":0,
-"past_year_data":0,
-}
-
-file = open("python.txt")
-
-months_done = []
-for line in file:
-   if(len(line)>=56):
-       result["total_requests"]+=1
-       data=line.split()
-       date = data[3][1::].split(':')
-         
-month = date[0][3::]
-if month not in months_done:
-     file_name = month[:3:]+month[4::]
-     if(len(file_name)) == 7:
-        month_file = open(month[:3:]+month[4::]+".txt",'w')
-print(file_name)
-
-months_done.append(month)
-month_file.write(line)
-
-if month in result["past_6_month"]:
-     result["past_6_month"][month]+=1
-else:
-     result["past_6_month"][month]=0
-       
+#takes the file and separates it line by line
+Content = file.read()
+List1 = Content.split('\n')
 
 
-print(result)
+#This goes through each request line to add into the count if it suits my criteria 
+for lines in List1:
+    if lines:
+        
+        if April in List1[count]:
+            Past_6_Months +=1
+
+        if May in List1[count]:
+            Past_6_Months +=1
+
+        if June in List1[count]:
+            Past_6_Months +=1
+
+        if July in List1[count]:
+            Past_6_Months +=1
+
+        if August in List1[count]:
+            Past_6_Months +=1
+
+        if September in List1[count]:
+            Past_6_Months +=1
+
+#This last function is different because there are two octobers listed in the log file.
+#This will make sure it is only added if it is the last October before the year ended.
+        if October in List1[count]:
+            if Year in List1[count]:
+                Past_6_Months +=1
+
+
+    #count will add all of these together
+    count +=1
+
+#these two codes give the output of each string
+print("Total Requests:" + str(count))
+print("Total Requests in the past six months:" + str(Past_6_Months))
+
+#the following code closes the log file
+file.close()
