@@ -53,8 +53,8 @@ for lines in List1:
     count +=1
 
 #these two codes give the output of each string
-print("Total Requests:" + str(count))
-print("Total Requests in the past six months:" + str(Past_6_Months))
+print("Total Requests {" + str(count) + "}")
+print("Total Requests in the past six months {" + str(Past_6_Months) + "}")
 
 #the following code closes the log file
 file.close()
