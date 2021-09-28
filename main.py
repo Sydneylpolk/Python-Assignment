@@ -6,7 +6,6 @@ count = 0
 Past_6_Months = 0
 
 #this converts the text in the log to a variable that you can use and reference
-April = "Apr"
 May = "May"
 June = "Jun"
 July = "Jul"
@@ -24,10 +23,8 @@ List1 = Content.split('\n')
 #This goes through each request line to add into the count if it suits my criteria 
 for lines in List1:
     if lines:
-        #this takes the list that has been split and searches for the criteria, here it's april.
-        #if april is listed here, the code adds it to the past 6 months count. 
-        if April in List1[count]:
-            Past_6_Months +=1
+        #this takes the list that has been split and searches for the criteria, here it's may.
+        #if may is listed here, the code adds it to the past 6 months count. 
 
         if May in List1[count]:
             Past_6_Months +=1
