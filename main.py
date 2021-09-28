@@ -15,15 +15,17 @@ September = "Sep"
 October = "Oct"
 Year = "1995"
 
-#takes the file and separates it line by line
+#takes reads the attached file
 Content = file.read()
+#Separates the file into a list to help identify if it has a month in it.
 List1 = Content.split('\n')
 
 
 #This goes through each request line to add into the count if it suits my criteria 
 for lines in List1:
     if lines:
-        
+        #this takes the list that has been split and searches for the criteria, here it's april.
+        #if april is listed here, the code adds it to the past 6 months count. 
         if April in List1[count]:
             Past_6_Months +=1
 
@@ -49,12 +51,14 @@ for lines in List1:
                 Past_6_Months +=1
 
 
-    #count will add all of these together
+    #count will add all of these together and add it to the total count
     count +=1
 
-#these two codes give the output of each string
-print("Total Requests {" + str(count) + "}")
+#this code gives the output of the number of requests in the last six months
 print("Total Requests in the past six months {" + str(Past_6_Months) + "}")
+
+#prints complete number of total requests in the entire file
+print("Total Requests {" + str(count) + "}")
 
 #the following code closes the log file
 file.close()
