@@ -66,3 +66,26 @@ for line in file:
            result["request_frequency"][data[6]]+=1
        else:
            result["request_frequency"][data[6]]=1
+            
+maxm=result["request_frequency"]["index.html"]
+minm=result["request_frequency"]["index.html"]
+maxlist=["index.html"]
+minlist=["index.html"]
+for i in result["request_frequency"]:
+   if result["request_frequency"][i] > maxm:
+       maxm = result["request_frequency"][i]
+       maxlist=[i]
+   if result["request_frequency"][i] < minm:
+       minm = result["request_frequency"][i]
+       minlist=[i]
+  
+   if result["request_frequency"][i] == maxm:
+       maxlist.append(i)
+  
+   if result["request_frequency"][i] == minm:
+       minlist.append(i)
+
+result["most_requested"]=[maxm,maxlist]
+result["least_requested"]=[minm,minlist]
+
+print(result)
