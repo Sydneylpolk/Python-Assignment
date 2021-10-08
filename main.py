@@ -1,4 +1,3 @@
-
 import requests
 url = "https://s3.amazonaws.com/tcmg476/http_access_log"
 
@@ -10,6 +9,7 @@ with open("python.txt","wb") as textfile:
    #writing one chunk at a time to pdf file
        if chunk:
            textfile.write(chunk)
+#creates a dictionary called result
 result={
 "total_requests":0,
 "per_day":{},
@@ -27,6 +27,9 @@ date_day = None
 days = 0
 week = None
 months_done = []
+#creating lists for date_day and day
+#parsing the file for the criteria in the read me. 
+#If the criteria is found in the line, it adds one to the vairable
 for line in file:
    if(len(line)>=56):
        result["total_requests"]+=1
@@ -66,7 +69,8 @@ for line in file:
            result["request_frequency"][data[6]]+=1
        else:
            result["request_frequency"][data[6]]=1
-            
+
+#This code is used to creat the most/least frequent requested files.           
 maxm=result["request_frequency"]["index.html"]
 minm=result["request_frequency"]["index.html"]
 maxlist=["index.html"]
