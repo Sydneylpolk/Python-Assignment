@@ -61,6 +61,7 @@ for line in file:
            result["per_month"][month]+=1
        else:
            result["per_month"][month]=0
+        #this code checks to see if the number 4 or 3 are in the code area to decide if it has been redirected or not successful. Ex: Error 404 (not_successful)
        if data[-2][0]=="4":
            result["not_successful"]+=1
        if data[-2][0]=="3":
